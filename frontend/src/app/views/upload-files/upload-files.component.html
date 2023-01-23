@@ -1,0 +1,36 @@
+<div class="form">
+  <form class="upload-form">
+      <div>
+        <label for="upload-files">
+          Selecione os arquivos a serem importados: <span>{{ this.fileNames }}</span>
+        </label>
+        <input
+          type="file"
+          id="upload-files"
+          accept="text/xml"
+          [disabled]="false"
+          multiple
+          (change)="getFiles($event)"
+        />
+      </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="this.fileNames.length > 0 ? false : true"
+      (click)="uploadFiles()"
+    >
+      Upload
+    </button>
+  </form>
+</div>
+
+<div *ngIf="message.length" class="message">
+  <p>Atenção!!!</p>
+  <span>{{ this.message }}</span>
+</div>
+
+<div class="progress-bar" *ngIf="this.progress.fileName != '' ">
+  <p>Realizando o upload do arquivo: {{ this.progress.fileName }}</p>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>

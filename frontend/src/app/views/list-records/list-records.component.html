@@ -1,0 +1,21 @@
+<div class="search-by-region">
+  <!-- testar com um select também -->
+  <input
+      type="search"
+      [formControl]="searchField"
+      placeholder="Digite aqui a sigla da região desejada: "
+    >
+    <button>
+      <img src="assets/images/icone-busca.png" alt="Lupa de cor roxa">
+    </button>
+</div>
+
+<div class="list-records-data" *ngIf="foundRecords$ | async as recordsList">
+  <div class="message"> {{ this.message }} </div>
+  <div *ngIf="recordsList.length > 0 ? true : false">
+    Exibindo itens da consulta:
+  </div>
+  <app-records-table [recordsList]="recordsList"></app-records-table>
+</div>
+
+

@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  database:
+    image: container-registry.oracle.com/database/enterprise:12.2.0.1-slim
+    container_name: xml-upload-db
+    ports:
+      - 1521:1521
+    volumes:
+      - data:/opt/oracle/oradata
+  app:
+    build:
+      context: ./backend/
+      dockerfile: ./docker/Dockerfile
+    container_name: xml-upload-api
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: ./Dockerfile
+    container_name: xml-upload-front
+    ports:
+      - 8081:80
+    depends_on:
+      - app
+
+volumes:
+  data:
+
+networks:
+  default:
+    name: xml_upload_network

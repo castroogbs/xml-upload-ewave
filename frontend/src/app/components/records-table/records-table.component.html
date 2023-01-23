@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Codigo do agente</th>
+    <th>Regiao</th>
+    <th>Data do registro</th>
+    <th>Valor</th>
+    <th>Tipo de registro</th>
+  </tr>
+  <tr *ngFor="let record of this.recordsList">
+    <td>{{ record.agent.code }}</td>
+    <td>{{ record.region }}</td>
+    <td>{{ record.recordDate | date: "dd/MM/yyyy" }}</td>
+    <td>{{ record.value }}</td>
+    <td>{{ this.getRecordType(record.generation) }}</td>
+  </tr>
+</table>
